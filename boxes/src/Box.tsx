@@ -1,3 +1,9 @@
+import { IBox } from "./BoxList";
+
+interface IBoxProps extends IBox {
+  remove: Function;
+}
+
 /** Colored box presentation
  *
  * Props:
@@ -10,25 +16,29 @@
  * BoxList -> Box
  */
 
-function Box({ id, width = 5, height = 5, backgroundColor, remove }) {
-
+function Box({
+  id,
+  width = 5,
+  height = 5,
+  backgroundColor,
+  remove,
+}: IBoxProps) {
   /** Remove a box. */
-  function handleRemove() {
+  function handleRemove(): void {
     remove(id);
   }
 
   return (
     <div className="Box">
-      <div className="Box-box"
+      <div
+        className="Box-box"
         style={{
           height: `${height}em`,
           width: `${width}em`,
-          backgroundColor: backgroundColor
+          backgroundColor: backgroundColor,
         }}
       />
-      <button
-        className="Box-removeBtn"
-        onClick={handleRemove}>
+      <button className="Box-removeBtn" onClick={handleRemove}>
         Remove The Box!
       </button>
     </div>
